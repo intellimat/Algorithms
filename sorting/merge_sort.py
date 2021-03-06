@@ -3,16 +3,16 @@
 # T(n) = 2T(n/2) + O(n)     when n > 1, otherwise O(1)
 # T(n) = O(n log(n))
 
-def merge_sort(A):
-    if len(A) == 1:
-        return A
+def merge_sort(A, left, right):
+    if left == right:
+        return [A[left]]
 
-    half = len(A) // 2
+    half = (left + right) // 2
 
-    left = merge_sort(A[:half])
-    right = merge_sort(A[half:])
+    left_part = merge_sort(A,left, half)
+    right_part = merge_sort(A, half+1, right)
 
-    result = merge(left,right)
+    result = merge(left_part,right_part)
 
     return result
 
@@ -41,6 +41,7 @@ def merge(A,B):
 
 if __name__ == '__main__':
     A = list(map(int, input().split()))
-    sorted_list = merge_sort(A)
+    sorted_list = merge_sort(A, 0, len(A)-1)
     for i in sorted_list:
         print(i, end=' ')
+        
