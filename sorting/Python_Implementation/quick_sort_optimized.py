@@ -72,7 +72,7 @@ def partition(A, left, right):
 
     return (i-1,k+1)    # return i-1, an index that points to the last element of the red zone
                         # and k+1, an index that points to the first element of the blue zone
-                        # all the elements equal to the pivot has been places in the in indexes [i,k] 
+                        # all the elements equal to the pivot has been places in the indeces [i,k] 
 
 
 if __name__ == '__main__':

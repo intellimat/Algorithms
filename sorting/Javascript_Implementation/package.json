@@ -1,0 +1,14 @@
+{
+  "name": "sorting_javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test_mergesort": "node testSortingAlgorithm mergesort",
+    "test_quicksort": "node testSortingAlgorithm quicksort",
+    "test_heapsort": "node testSortingAlgorithm heapsort",
+    "test_selectionsort": "node testSortingAlgorithm selectionsort"
+  },
+  "author": "Matteo Simone Gagliano",
+  "license": "ISC"
+}
