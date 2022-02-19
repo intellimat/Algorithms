@@ -197,29 +197,32 @@ export class BinarySearchTree {
     }
 
     // Returns true or false
-    _isPropertyRespected(subtreeRoot = this.root): boolean {
-        if (subtreeRoot === null) return true;
+    _isPropertyRespected(node = this.root): boolean {
+        function _isPropertyRespected_recursive(node: Node, lowerRange:number, upperRange:number): boolean{
+            if (!(lowerRange < node.value && node.value< upperRange))
+                return false
+            let leftChildOk = true
+            let rightChildOk = true
+            if (node.left !== null)
+                leftChildOk = _isPropertyRespected_recursive(node.left,lowerRange, node.value)
+            if (node.right !== null)
+                rightChildOk = _isPropertyRespected_recursive(node.right,node.value, upperRange)
+            return leftChildOk && rightChildOk
+        }
 
-        const leftChild = subtreeRoot.left;
-        const rightChild = subtreeRoot.right;
+        if (node === null || (node.left === null && node.right === null))
+        return true
 
-        let leftChildOk = true;
-        let rightChildOk = true;
+        let x = true
+        let y = true
 
-        if (leftChild !== null)
-            leftChildOk = subtreeRoot.value > leftChild.value ? true : false;
-        if (rightChild !== null)
-            rightChildOk = subtreeRoot.value < rightChild.value ? true : false;
+        if (node.left !== null)
+            x = _isPropertyRespected_recursive(node.left, -Infinity, node.value)
+        if (node.right !== null)
+            x = _isPropertyRespected_recursive(node.right, node.value, Infinity)
 
-        if (!leftChildOk || !rightChildOk) return false;
-
-        if (!this._isPropertyRespected(leftChild)) console.debug(leftChild);
-        if (!this._isPropertyRespected(rightChild)) console.debug(rightChild);
-
-        return (
-            this._isPropertyRespected(leftChild) &&
-            this._isPropertyRespected(rightChild)
-        );
+        return x && y
+        
     }
 
     _getLeftDescendant(node: Node): Node | null {

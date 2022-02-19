@@ -1,7 +1,7 @@
 import { BinarySearchTree, Node } from './binary_search_tree_data_structure';
 // Make sure that upperRange - lowerRange >> numOfInsertions
 // Otherwise we cannot find enough different values to insert in the tree
-const numOfInsertions = parseInt(process.argv[2] ? process.argv[2] : '400');
+const numOfInsertions = parseInt(process.argv[2] ? process.argv[2] : '2000');
 const lowerRange = parseInt(process.argv[3] ? process.argv[3] : '0');
 const upperRange = parseInt(process.argv[4] ? process.argv[4] : '1000000');
 
@@ -11,6 +11,22 @@ let bst: BinarySearchTree = new BinarySearchTree();
 function main() {
     test_insertions_and_deletions();
     // test_get_size();
+    // test_property();
+}
+
+
+function test_property() {
+    // If isPropertyRespected is implemented correctly this test should fail!
+    bst = new BinarySearchTree();
+    const n1 = new Node(4)
+    const n2 = new Node(2)
+    const n3 = new Node(1)
+    const n4 = new Node(5)
+    bst.root = n1;
+    bst.root.left = n2;
+    bst.root.left.left = n3;
+    bst.root.left.right = n4;
+    checkBSTproperty();
 }
 
 function test_get_size() {
