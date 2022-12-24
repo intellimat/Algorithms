@@ -198,31 +198,50 @@ export class BinarySearchTree {
 
     // Returns true or false
     _isPropertyRespected(node = this.root): boolean {
-        function _isPropertyRespected_recursive(node: Node, lowerRange:number, upperRange:number): boolean{
-            if (!(lowerRange < node.value && node.value< upperRange))
-                return false
-            let leftChildOk = true
-            let rightChildOk = true
+        function _isPropertyRespected_recursive(
+            node: Node,
+            lowerRange: number,
+            upperRange: number
+        ): boolean {
+            if (!(lowerRange < node.value && node.value < upperRange))
+                return false;
+            let leftChildOk = true;
+            let rightChildOk = true;
             if (node.left !== null)
-                leftChildOk = _isPropertyRespected_recursive(node.left,lowerRange, node.value)
+                leftChildOk = _isPropertyRespected_recursive(
+                    node.left,
+                    lowerRange,
+                    node.value
+                );
             if (node.right !== null)
-                rightChildOk = _isPropertyRespected_recursive(node.right,node.value, upperRange)
-            return leftChildOk && rightChildOk
+                rightChildOk = _isPropertyRespected_recursive(
+                    node.right,
+                    node.value,
+                    upperRange
+                );
+            return leftChildOk && rightChildOk;
         }
 
         if (node === null || (node.left === null && node.right === null))
-        return true
+            return true;
 
-        let x = true
-        let y = true
+        let x = true;
+        let y = true;
 
         if (node.left !== null)
-            x = _isPropertyRespected_recursive(node.left, -Infinity, node.value)
+            x = _isPropertyRespected_recursive(
+                node.left,
+                -Infinity,
+                node.value
+            );
         if (node.right !== null)
-            x = _isPropertyRespected_recursive(node.right, node.value, Infinity)
+            y = _isPropertyRespected_recursive(
+                node.right,
+                node.value,
+                Infinity
+            );
 
-        return x && y
-        
+        return x && y;
     }
 
     _getLeftDescendant(node: Node): Node | null {
